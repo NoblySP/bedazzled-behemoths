@@ -32,6 +32,23 @@ body {
   inset -2px -2px 0px #ffffff;
 }
 
+.progress {
+  position: fixed;
+  width: 100%;
+  justify-content: center;
+  bottom: 10%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#health {
+  position: fixed;
+  width: 40%;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 
 .user_list {
   position: fixed;
