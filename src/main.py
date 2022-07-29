@@ -46,3 +46,4 @@ async def main_ws_game(websocket: WebSocket):
     while True:
         data = await websocket.receive_text()
         print(data)
+
