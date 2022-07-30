@@ -1,5 +1,11 @@
 const health = document.getElementById("health")
 const slotEls = document.querySelectorAll(".slot")
+let protocol;
+if (window.location.protocol == "http:") {
+    protocol = "ws://"
+} else {
+    protocol = "wss://"
+}
 
 health.addEventListener("click", subtractHealth)
 let highlightedId;
@@ -12,6 +18,7 @@ slotEls.forEach(slotEl => {
         slotEl.classList.add("highlighted")
     })
 })
+
 // const socket = new WebSocket("ws://localhost:8000")
 // socket.addEventListener("open", () => console.log("connected"))
 // socket.addEventListener("message", (e) => console.log(e.data))
@@ -27,7 +34,7 @@ function connect(socketName){
             rooms.map(room => {
                 if (id === room){
                     id = Math.floor(Math.random() * 50000)
-                    connect(`wss://579c-2001-4451-970-3d00-60bf-baee-9532-b6e9.ngrok.io/${id}`)
+                    connect(`${protocol}${window.location.host}/${id}`)
                 }
             })
         }
@@ -50,12 +57,13 @@ function connect(socketName){
         }
     })
 }
-connect(`wss://579c-2001-4451-970-3d00-60bf-baee-9532-b6e9.ngrok.io/${id}`)
+
+connect(`${protocol}${window.location.host}/${id}`)
 function subtractHealth() {
     if (health.value > 0) {
-      health.value -= 1;
-      console.log(health.value)
+        health.value -= 1;
+        console.log(health.value)
     } else {
-      health.value = 0;
+        health.value = 0;
     }
 }
